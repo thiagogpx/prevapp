@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 
 // https://api.hgbrasil.com/weather?format=json-cors&key=185fee55&city_name={city_name}
 
-const API_URL =
-  "https://api.hgbrasil.com/weather?format=json-cors&key=185fee55&city_name=Curitiba";
+// Passar o cityName como parâmetro
+const HGWeather = ({ cityName }) => {
+  const API_URL = `https://api.hgbrasil.com/weather?format=json-cors&key=179a44c8&city_name=${cityName}`;
 
-
-const HGWeather = () => {
   const [HGWeather, setHGWeather] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -26,19 +24,20 @@ const HGWeather = () => {
     };
 
     fetchData();
-  }, []);
+  }, [cityName]);
 
-  if (loading) return <div>Loading...</div>;
+  // if (loading) return <div>Loading...</div>;
 
-  if (error) {
-    if (error.response) {
-      return <div>Error: {error.response.data.message}</div>;
-    } else if (error.request) {
-      return <div>Error: Network request failed</div>;
-    } else {
-      return <div>Error: {error.message}</div>;
-    }
-  }
+  // if (error) {
+  //   if (error.response) {
+  //     return <div>Error: {error.response.data.message}</div>;
+  //   } else if (error.request) {
+  //     return <div>Error: Network request failed</div>;
+  //   } else {
+  //     return <div>Error: {error.message}</div>;
+  //   }
+  // }
+  // console.log(HGWeather)
 
   return (
     <div>
@@ -46,15 +45,24 @@ const HGWeather = () => {
       <p>City: {HGWeather && HGWeather.results && HGWeather.results.city}</p>
       <p>Data: {HGWeather && HGWeather.results && HGWeather.results.date}</p>
       <p>
-        Temperature: {HGWeather && HGWeather.results && HGWeather.results.temp}
+        Temperature Atual:{" "}
+        {HGWeather && HGWeather.results && HGWeather.results.temp}
         °C
+      </p>
+      <p>
+        Temperature Máxima:{" "}
+        {HGWeather && HGWeather.results && HGWeather.results.forecast[0].max}°C
+      </p>
+      <p>
+        Temperature Miníma:{" "}
+        {HGWeather && HGWeather.results && HGWeather.results.forecast[0].min}°C
       </p>
       <p>
         Description:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.description}
       </p>
       <p>
-        Tipo do clima atual + ícone correspondente:{" "}
+        Tipo do clima atual:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.condition_slug}
       </p>
       <p>
@@ -63,12 +71,6 @@ const HGWeather = () => {
       </p>
     </div>
   );
-};
-
-HGWeather.propTypes = {
-  HGWeather: PropTypes.object,
-  error: PropTypes.object,
-  loading: PropTypes.bool,
 };
 
 export default HGWeather;
