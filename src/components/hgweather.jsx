@@ -42,32 +42,32 @@ const HGWeather = ({ cityName }) => {
   return (
     <div>
       <h2>HGWeather</h2>
-      <p>City: {HGWeather && HGWeather.results && HGWeather.results.city}</p>
+      <p>Cidade: {HGWeather && HGWeather.results && HGWeather.results.city}</p>
       <p>Data: {HGWeather && HGWeather.results && HGWeather.results.date}</p>
       <p>
-        Temperature Atual:{" "}
+        Temperatura Atual:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.temp}
         °C
       </p>
       <p>
-        Temperature Máxima:{" "}
+        Temperatura Máxima:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.forecast[0].max}°C
       </p>
       <p>
-        Temperature Miníma:{" "}
+        Temperatura Miníma:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.forecast[0].min}°C
       </p>
       <p>
-        Description:{" "}
+        Clima atual:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.description}
-      </p>
-      <p>
-        Tipo do clima atual:{" "}
-        {HGWeather && HGWeather.results && HGWeather.results.condition_slug}
       </p>
       <p>
         Probabilidade de chuva:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.rain}%
+      </p>
+      <p>
+        Fase da Lua:{" "}
+        {HGWeather && HGWeather.results && HGWeather.results.moon_phase}%
       </p>
     </div>
   );

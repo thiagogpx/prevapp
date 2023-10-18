@@ -6,6 +6,11 @@ import OpenWeather from "./components/openweather";
 function App() {
   const [cityName, setCityName] = useState("");
   const [mapCoordinates, setMapCoordinates] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
 
   const handleConsult = async () => {
     const inputCity = document.getElementById("inputCity");
@@ -28,8 +33,8 @@ function App() {
 
   return (
     <main className="App">
-      <HGWeather cityName={cityName} />
-      <OpenWeather cityName={cityName} mapCoordinates={mapCoordinates} />
+      {/* <HGWeather cityName={cityName} />
+      <OpenWeather cityName={cityName} mapCoordinates={mapCoordinates} /> */}
       <aside className="btn-container">
         <input
           id="inputCity"
@@ -42,7 +47,26 @@ function App() {
         <select className="btn btn-select" id="selectlist">
           <option>Primeira opção</option>
         </select>
+        <button className="btn btn-open-popup" onClick={openPopup}>
+          Abrir Popup
+        </button>
       </aside>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <HGWeather cityName={cityName} />
+            <button
+              className="btn btn-close-popup"
+              onClick={() => setShowPopup(false)}
+            >
+              Fechar Popup
+            </button>
+          </div>
+        </div>
+      )}
+      <div className="map-control">
+        <OpenWeather cityName={cityName} mapCoordinates={mapCoordinates} />
+      </div>
     </main>
   );
 }
