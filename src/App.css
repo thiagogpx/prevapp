@@ -34,9 +34,10 @@
   display: flex;
   top: 0;
   right: 0;
-  width: 90%;
-  height: 95%;
+  width: 79%;
+  height: 94%;
   border: 5px solid black;
+  z-index: 1;
 }
 
 td {
@@ -54,24 +55,51 @@ td {
 
 .popup {
   position: fixed;
+  flex: 1;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 96%;
-  background: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+  width: 20%;
+  height: 94%;
+  background: rgb(0, 0, 0);
   display: flex;
   justify-content: left;
   align-items: left;
 }
 
 .popup-content {
-  background: rgb(0, 0, 0);
-  display: flex;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 5px;
 }
 
-.btn-close-popup {
+.popup-footer {
+  display: flex;
+  justify-content: left; /* Alinhar os botões à direita do rodapé */
+  margin-top: 10px; /* Espaço entre o conteúdo do popup e o rodapé */
+}
+
+/* Estilize os botões no rodapé conforme necessário */
+.popup-footer .btn {
+  margin-left: 10px; /* Espaço entre os botões */
+}
+
+.btn-close-popup{
   margin-top: 10px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
 }

@@ -2,14 +2,20 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import HGWeather from "./components/hgweather";
 import OpenWeather from "./components/openweather";
+import PrevHGWeather from "./components/prevhgweather";
 
 function App() {
   const [cityName, setCityName] = useState("");
   const [mapCoordinates, setMapCoordinates] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopInf, setshowPopInf] = useState(false);
+  const [showPopPrev, setshowPopPrev] = useState(false);
 
   const openPopup = () => {
-    setShowPopup(true);
+    setshowPopInf(true);
+  };
+
+  const openPopupPrev = () => {
+    setshowPopPrev(true);
   };
 
   const handleConsult = async () => {
@@ -48,19 +54,39 @@ function App() {
           <option>Primeira opção</option>
         </select>
         <button className="btn btn-open-popup" onClick={openPopup}>
-          Abrir Popup
+          Informações climáticas
+        </button>
+        <button className="btn btn-prev-temp" onClick={openPopupPrev}>
+          Previsões climáticas
         </button>
       </aside>
-      {showPopup && (
+      {showPopInf && (
         <div className="popup">
           <div className="popup-content">
             <HGWeather cityName={cityName} />
-            <button
-              className="btn btn-close-popup"
-              onClick={() => setShowPopup(false)}
-            >
-              Fechar Popup
-            </button>
+            <div className="popup-footer">
+              <button
+                className="btn btn-close-popup"
+                onClick={() => setshowPopInf(false)}
+              >
+                Fechar Popup
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showPopPrev && (
+        <div className="popup">
+          <div className="popup-content">
+            <PrevHGWeather cityName={cityName} />
+            <div className="popup-footer">
+              <button
+                className="btn btn-close-popup"
+                onClick={() => setshowPopPrev(false)}
+              >
+                Fechar Popup
+              </button>
+            </div>
           </div>
         </div>
       )}

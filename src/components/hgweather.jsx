@@ -3,6 +3,47 @@ import axios from "axios";
 
 // https://api.hgbrasil.com/weather?format=json-cors&key=185fee55&city_name={city_name}
 
+const linkPhotoMoon = "https://assets.hgbrasil.com/weather/icons/moon";
+const linkPhotoCondition =
+  "https://assets.hgbrasil.com/weather/icons/conditions";
+
+const moonPhaseIcons = {
+  new: linkPhotoMoon + "/new.png",
+  waxing_crescent: linkPhotoMoon + "/waxing_crescent.png",
+  first_quarter: linkPhotoMoon + "/first_quarter.png",
+  waxing_gibbous: linkPhotoMoon + "/waxing_gibbous.png",
+  full: linkPhotoMoon + "/full.png",
+  waning_gibbous: linkPhotoMoon + "/waning_gibbous.png",
+  last_quarter: linkPhotoMoon + "/last_quarter.png",
+  waning_crescent: linkPhotoMoon + "/waning_crescent.png",
+};
+
+const conditionIcons = {
+  storm: linkPhotoCondition + "/storm.svg",
+  snow: linkPhotoCondition + "/snow.svg",
+  hail: linkPhotoCondition + "/hail.svg",
+  rain: linkPhotoCondition + "/rain.svg",
+  fog: linkPhotoCondition + "/fog.svg",
+  clear_day: linkPhotoCondition + "/clear_day.svg",
+  clear_night: linkPhotoCondition + "/clear_night.svg",
+  cloud: linkPhotoCondition + "/cloud.svg",
+  cloudly_day: linkPhotoCondition + "/cloudly_day.svg",
+  cloudly_night: linkPhotoCondition + "/cloudly_night.svg",
+  none_day: linkPhotoCondition + "/none_day.svg",
+  none_night: linkPhotoCondition + "/none_night.svg",
+};
+
+const moonPhaseNames = {
+  new: "Lua nova",
+  waxing_crescent: "Lua crescente",
+  first_quarter: "Quarto crescente",
+  waxing_gibbous: "Gibosa crescente",
+  full: "Lua cheia",
+  waning_gibbous: "Gibosa minguante",
+  last_quarter: "Quarto minguante",
+  waning_crescent: "Lua minguante",
+};
+
 // Passar o cityName como parâmetro
 const HGWeather = ({ cityName }) => {
   const API_URL = `https://api.hgbrasil.com/weather?format=json-cors&key=179a44c8&city_name=${cityName}`;
@@ -26,22 +67,9 @@ const HGWeather = ({ cityName }) => {
     fetchData();
   }, [cityName]);
 
-  // if (loading) return <div>Loading...</div>;
-
-  // if (error) {
-  //   if (error.response) {
-  //     return <div>Error: {error.response.data.message}</div>;
-  //   } else if (error.request) {
-  //     return <div>Error: Network request failed</div>;
-  //   } else {
-  //     return <div>Error: {error.message}</div>;
-  //   }
-  // }
-  // console.log(HGWeather)
-
   return (
     <div>
-      <h2>HGWeather</h2>
+      <h2>Informações climáticas</h2>
       <p>Cidade: {HGWeather && HGWeather.results && HGWeather.results.city}</p>
       <p>Data: {HGWeather && HGWeather.results && HGWeather.results.date}</p>
       <p>
@@ -67,7 +95,27 @@ const HGWeather = ({ cityName }) => {
       </p>
       <p>
         Fase da Lua:{" "}
-        {HGWeather && HGWeather.results && HGWeather.results.moon_phase}%
+        {HGWeather && HGWeather.results && HGWeather.results.moon_phase
+          ? moonPhaseNames[HGWeather.results.moon_phase]
+          : "Desconhecida"}
+      </p>
+      <p>
+        <img
+          src={
+            moonPhaseIcons[
+              HGWeather && HGWeather.results && HGWeather.results.moon_phase
+            ]
+          }
+        />
+      </p>
+      <p>
+        <img
+          src={
+            conditionIcons[
+              HGWeather && HGWeather.results && HGWeather.results.condition_slug
+            ]
+          }
+        />
       </p>
     </div>
   );
