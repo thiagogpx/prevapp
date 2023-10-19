@@ -3,21 +3,11 @@ import axios from "axios";
 
 // https://api.hgbrasil.com/weather?format=json-cors&key=185fee55&city_name={city_name}
 
-const linkPhotoMoon = "https://assets.hgbrasil.com/weather/icons/moon";
+// Definindo URLs de recursos para ícones de fases da lua e condições climáticas
 const linkPhotoCondition =
   "https://assets.hgbrasil.com/weather/icons/conditions";
 
-const moonPhaseIcons = {
-  new: linkPhotoMoon + "/new.png",
-  waxing_crescent: linkPhotoMoon + "/waxing_crescent.png",
-  first_quarter: linkPhotoMoon + "/first_quarter.png",
-  waxing_gibbous: linkPhotoMoon + "/waxing_gibbous.png",
-  full: linkPhotoMoon + "/full.png",
-  waning_gibbous: linkPhotoMoon + "/waning_gibbous.png",
-  last_quarter: linkPhotoMoon + "/last_quarter.png",
-  waning_crescent: linkPhotoMoon + "/waning_crescent.png",
-};
-
+// Mapeamento de ícones para as condições climáticas
 const conditionIcons = {
   storm: linkPhotoCondition + "/storm.svg",
   snow: linkPhotoCondition + "/snow.svg",
@@ -33,30 +23,25 @@ const conditionIcons = {
   none_night: linkPhotoCondition + "/none_night.svg",
 };
 
-const moonPhaseNames = {
-  new: "Lua nova",
-  waxing_crescent: "Lua crescente",
-  first_quarter: "Quarto crescente",
-  waxing_gibbous: "Gibosa crescente",
-  full: "Lua cheia",
-  waning_gibbous: "Gibosa minguante",
-  last_quarter: "Quarto minguante",
-  waning_crescent: "Lua minguante",
-};
+// O componente PrevHGWeather recebe uma prop "cityName" para indicar a cidade a ser consultada
 
-// Passar o cityName como parâmetro
 const PrevHGWeather = ({ cityName }) => {
+  // Construção da URL da API com base na cidade recebida
   const API_URL = `https://api.hgbrasil.com/weather?format=json-cors&key=179a44c8&city_name=${cityName}`;
 
+  // Estados para armazenar os dados da previsão do tempo, erros e estado de carregamento
   const [PrevHGWeather, setPrevHGWeather] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // UseEffect que faz a solicitação à API quando a cidade (cityName) muda
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        // Faz uma solicitação para a API da HG Brasil usando Axios
         const response = await axios.get(API_URL);
+        // Define os dados da previsão do tempo na variável de estado
         setPrevHGWeather(response.data);
       } catch (error) {
         setError(error);
@@ -69,12 +54,6 @@ const PrevHGWeather = ({ cityName }) => {
 
   return (
     <div>
-      {/* o Data da previsão;
-      o Temperaturas;
-      ▪ Máxima;
-      ▪ Mínima;
-      o Tipo do clima previsto + ícone correspondente
-      o Chance de chuva */}
       <h2>Previsões climáticas</h2>
       <h3>
         {" "}
@@ -126,6 +105,7 @@ const PrevHGWeather = ({ cityName }) => {
           PrevHGWeather.results.forecast[1].rain}
         %
       </p>
+      {/* Repete o mesmo padrão para as próximas previsões (forecast[2], forecast[3], etc.) */}
       <h3>
         {" "}
         {PrevHGWeather &&

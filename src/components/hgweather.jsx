@@ -3,10 +3,12 @@ import axios from "axios";
 
 // https://api.hgbrasil.com/weather?format=json-cors&key=185fee55&city_name={city_name}
 
+// Definindo URLs de recursos para ícones de fases da lua e condições climáticas
 const linkPhotoMoon = "https://assets.hgbrasil.com/weather/icons/moon";
 const linkPhotoCondition =
   "https://assets.hgbrasil.com/weather/icons/conditions";
 
+// Mapeamento de ícones para as fases da lua
 const moonPhaseIcons = {
   new: linkPhotoMoon + "/new.png",
   waxing_crescent: linkPhotoMoon + "/waxing_crescent.png",
@@ -18,6 +20,7 @@ const moonPhaseIcons = {
   waning_crescent: linkPhotoMoon + "/waning_crescent.png",
 };
 
+// Mapeamento de ícones para as condições climáticas
 const conditionIcons = {
   storm: linkPhotoCondition + "/storm.svg",
   snow: linkPhotoCondition + "/snow.svg",
@@ -33,6 +36,7 @@ const conditionIcons = {
   none_night: linkPhotoCondition + "/none_night.svg",
 };
 
+// Mapeamento de nomes para as fases da lua
 const moonPhaseNames = {
   new: "Lua nova",
   waxing_crescent: "Lua crescente",
@@ -44,19 +48,24 @@ const moonPhaseNames = {
   waning_crescent: "Lua minguante",
 };
 
-// Passar o cityName como parâmetro
+// O componente PrevHGWeather recebe uma prop "cityName" para indicar a cidade a ser consultada
 const HGWeather = ({ cityName }) => {
+  // Construção da URL da API com base na cidade recebida
   const API_URL = `https://api.hgbrasil.com/weather?format=json-cors&key=179a44c8&city_name=${cityName}`;
 
+  // Estados para armazenar os dados da previsão do tempo, erros e estado de carregamento
   const [HGWeather, setHGWeather] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // UseEffect que faz a solicitação à API quando a cidade (cityName) muda
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        // Faz uma solicitação para a API da HG Brasil usando Axios
         const response = await axios.get(API_URL);
+        // Define os dados da previsão do tempo na variável de estado
         setHGWeather(response.data);
       } catch (error) {
         setError(error);
