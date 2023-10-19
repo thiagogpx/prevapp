@@ -26,7 +26,7 @@ Para executar a aplicação, siga os passos abaixo:
 4. Inicie a aplicação:
 
    ```bash
-   npm start
+   npm run dev
    # ou
    yarn start
    ```
