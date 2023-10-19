@@ -55,6 +55,7 @@ td {
 
 .popup {
   position: fixed;
+  overflow-y: auto;
   flex: 1;
   top: 0;
   left: 0;

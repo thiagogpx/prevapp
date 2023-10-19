@@ -109,13 +109,6 @@ const PrevHGWeather = ({ cityName }) => {
           PrevHGWeather.results.forecast[1].description}
       </p>
       <p>
-        Probabilidade de chuva:{" "}
-        {PrevHGWeather &&
-          PrevHGWeather.results &&
-          PrevHGWeather.results.forecast[1].rain}
-        %
-      </p>
-      <p>
         <img
           src={
             conditionIcons[
@@ -126,7 +119,14 @@ const PrevHGWeather = ({ cityName }) => {
           }
         />
       </p>
-      {/* <h3>
+      <p>
+        Probabilidade de chuva:{" "}
+        {PrevHGWeather &&
+          PrevHGWeather.results &&
+          PrevHGWeather.results.forecast[1].rain}
+        %
+      </p>
+      <h3>
         {" "}
         {PrevHGWeather &&
           PrevHGWeather.results &&
@@ -159,13 +159,6 @@ const PrevHGWeather = ({ cityName }) => {
           PrevHGWeather.results.forecast[2].description}
       </p>
       <p>
-        Probabilidade de chuva:{" "}
-        {PrevHGWeather &&
-          PrevHGWeather.results &&
-          PrevHGWeather.results.forecast[2].rain}
-        %
-      </p>
-      <p>
         <img
           src={
             conditionIcons[
@@ -175,6 +168,13 @@ const PrevHGWeather = ({ cityName }) => {
             ]
           }
         />
+      </p>
+      <p>
+        Probabilidade de chuva:{" "}
+        {PrevHGWeather &&
+          PrevHGWeather.results &&
+          PrevHGWeather.results.forecast[2].rain}
+        %
       </p>
       <h3>
         {" "}
@@ -209,13 +209,6 @@ const PrevHGWeather = ({ cityName }) => {
           PrevHGWeather.results.forecast[3].description}
       </p>
       <p>
-        Probabilidade de chuva:{" "}
-        {PrevHGWeather &&
-          PrevHGWeather.results &&
-          PrevHGWeather.results.forecast[3].rain}
-        %
-      </p>
-      <p>
         <img
           src={
             conditionIcons[
@@ -225,7 +218,14 @@ const PrevHGWeather = ({ cityName }) => {
             ]
           }
         />
-      </p> */}
+      </p>
+      <p>
+        Probabilidade de chuva:{" "}
+        {PrevHGWeather &&
+          PrevHGWeather.results &&
+          PrevHGWeather.results.forecast[3].rain}
+        %
+      </p>
     </div>
   );
 };

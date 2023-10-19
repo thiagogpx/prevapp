@@ -90,6 +90,15 @@ const HGWeather = ({ cityName }) => {
         {HGWeather && HGWeather.results && HGWeather.results.description}
       </p>
       <p>
+        <img
+          src={
+            conditionIcons[
+              HGWeather && HGWeather.results && HGWeather.results.condition_slug
+            ]
+          }
+        />
+      </p>
+      <p>
         Probabilidade de chuva:{" "}
         {HGWeather && HGWeather.results && HGWeather.results.rain}%
       </p>
@@ -104,15 +113,6 @@ const HGWeather = ({ cityName }) => {
           src={
             moonPhaseIcons[
               HGWeather && HGWeather.results && HGWeather.results.moon_phase
-            ]
-          }
-        />
-      </p>
-      <p>
-        <img
-          src={
-            conditionIcons[
-              HGWeather && HGWeather.results && HGWeather.results.condition_slug
             ]
           }
         />
