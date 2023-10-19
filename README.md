@@ -61,6 +61,6 @@ O projeto Geotempo é construído com React e consiste nos seguintes componentes
 
 ## Passos Futuros
 
-# Alguns passos futuros para melhorias neste projeto incluem:
+### Alguns passos futuros para melhorias neste projeto incluem:
 
 O OpenLayers oferece a capacidade de adicionar vetores ao mapa, o que era uma funcionalidade destacada na documentação para a criação desta página da web. Portanto, como próxima etapa, planejo incorporar ao mapa dois ícones representando informações sobre o tipo de clima previsto e a fase da Lua. Embora essa funcionalidade não tenha sido entregue na versão atual, devido a desafios encontrados na manipulação da biblioteca OpenLayers, pretendo trabalhar nessa implementação em versões futuras do projeto. Esta adição proporcionará uma experiência mais completa e informativa aos usuários, tornando o projeto ainda mais valioso e funcional.
